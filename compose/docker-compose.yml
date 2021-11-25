@@ -3,6 +3,23 @@
 version: '3.1'
 services:
 
+  ### FRONTEND ###
+  weather-forecast-frontend-container:
+    image: weatherforecast/weather-forecast-frontend:latest
+    container_name: weather-forecast-frontend
+    ports:
+      - "80:80"
+    tty: true
+    expose:
+      - "80"
+    depends_on:
+      - weather-forecast-backend-container
+    stdin_open: true
+    environment:
+      - MODE=dev
+    networks:
+      - local
+
   ### BACKEND ###
   weather-forecast-backend-container:
     image: weatherforecast/weather-forecast-backend-webapplication:1.0-SNAPSHOT
